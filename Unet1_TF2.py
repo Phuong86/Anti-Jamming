@@ -40,40 +40,6 @@ y_train_images = y_train_set.reshape(int(len(y_train_set)/n_len),n_len,8,1)
 # y_test_images = y_test_set.reshape(int(len(y_test_set)/n_len),n_len,8,1)
 
 
-'1 jammed 250 frame sweep'
-# real_input_250sweep = pd.read_csv("CFH_2021_08_09_POS_pulsed/INFERENCE_1_jammed_freq_sweep_rate_10_PULSED_4_6.txt",usecols=['TIME STEP',' f1','f2','f3','f4','f5','f6','f7','f8'],index_col='TIME STEP')
-# ideal_input_250sweep = pd.read_csv("CFH_2021_08_09_POS_pulsed/TRAINING_1_jammed_freq_sweep_rate_10_PULSED_4_6.txt",usecols=['TIME STEP',' f1','f2','f3','f4','f5','f6','f7','f8'],index_col =['TIME STEP'])
-
-# real_input_250sweep = real_input_250sweep.to_numpy()
-# ideal_input_250sweep = ideal_input_250sweep.to_numpy()
-# real_input_250sweep = np.where(real_input_250sweep>1, 0.5, real_input_250sweep)
-
-# train_input_set_250sweep = real_input_250sweep[:int(len(real_input_250sweep)*0.2)]
-# y_train_set_250sweep = ideal_input_250sweep[:int(len(ideal_input_250sweep)*0.2)]
-         
-# test_input_set_250sweep = real_input_250sweep[int(len(real_input_250sweep)*0.8):]
-# y_test_set_250sweep = ideal_input_250sweep[int(len(ideal_input_250sweep)*0.8):]
-
-# train_images_250sweep = train_input_set_250sweep.reshape(int(len(train_input_set_250sweep)/n_len),n_len,8,1)
-# y_train_images_250sweep = y_train_set_250sweep.reshape(int(len(y_train_set_250sweep)/n_len),n_len,8,1)
-
-# test_images_250sweep = test_input_set_250sweep.reshape(int(len(test_input_set_250sweep)/n_len),n_len,8,1)
-# y_test_images_250sweep = y_test_set_250sweep.reshape(int(len(y_test_set_250sweep)/n_len),n_len,8,1)
-
-
-
-# train_input_set = real_input_250sweep[int(len(real_input_250sweep)*0.3):int(len(real_input_250sweep)*0.5)]
-# y_train_set = ideal_input_250sweep[int(len(ideal_input_250sweep)*0.3):int(len(ideal_input_250sweep)*0.5)]
-# train_images = train_input_set.reshape(int(len(train_input_set)/n_len),n_len,8,1)
-# y_train_images = y_train_set.reshape(int(len(y_train_set)/n_len),n_len,8,1)
-
-# test_input_set = real_input_250sweep[int(len(real_input_250sweep)*0.5):int(len(real_input_250sweep)*0.7)]
-# y_test_set = ideal_input_250sweep[int(len(ideal_input_250sweep)*0.5):int(len(ideal_input_250sweep)*0.7)]
-# test_images = test_input_set.reshape(int(len(test_input_set)/n_len),n_len,8,1)
-# y_test_images = y_test_set.reshape(int(len(y_test_set)/n_len),n_len,8,1)
-
-
-
 # #Define the U-Net model
 class Encoder_block(tf.keras.Model):
     def __init__(self,filters=64,kernel_size=5,**kwargs):
