@@ -167,18 +167,21 @@ with tf.Session() as sess:
     
     # for each episode
     episode_reward = []
+    """in the case we do not have the jamming data, we can use gym_env to get the initial observation"""
     #gym_env = JammerEnv(n_jam_freqs,n_com_freqs, n_t, sweep_rate, freq_resolution) 
     #obs = gym_env.reset_sweep()
+    """here we load the sequence of jamming data from f1 to f10
     obs_init = np.vstack((f1_data[0:n_t],f2_data[0:n_t],f3_data[0:n_t],f4_data[0:n_t],f5_data[0:n_t],f6_data[0:n_t],f7_data[0:n_t],f8_data[0:n_t],f9_data[0:n_t],f10_data[0:n_t]))
     obs = obs_init.transpose(1,0).reshape(n_t,n_jam_freqs,1)
     
-    #add noise
+    """we can add noise to the jamming data in practice"""
     #mean_noise = 0
     #noise_var = 1
     
     #noise  = np.random.normal(mean_noise,np.sqrt(noise_var),obs.shape)
     #obs_add_noise = obs + noise
     # obs_noise = obs_add_noise.reshape(n_t,n_jam_freqs,1)
+    
     comm_selection =[]    
     
     for i in range(num_episodes):
