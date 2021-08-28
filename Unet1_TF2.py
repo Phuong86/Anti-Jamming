@@ -30,14 +30,14 @@ real_input = np.where(real_input>1, 0.5, real_input)
 train_input_set = real_input[:int(len(real_input)*0.2)]
 y_train_set = ideal_input[:int(len(ideal_input)*0.2)]
          
-# test_input_set = real_input[int(len(real_input)*0.5):]
-# y_test_set = ideal_input[int(len(ideal_input)*0.5):]
+test_input_set = real_input[int(len(real_input)*0.2):int(len(real_input)*0.4)]
+y_test_set = ideal_input[int(len(ideal_input)*0.2):int(len(real_input)*0.4)]
 
 train_images = train_input_set.reshape(int(len(train_input_set)/n_len),n_len,8,1)
 y_train_images = y_train_set.reshape(int(len(y_train_set)/n_len),n_len,8,1)
 
-# test_images = test_input_set.reshape(int(len(test_input_set)/n_len),n_len,8,1)
-# y_test_images = y_test_set.reshape(int(len(y_test_set)/n_len),n_len,8,1)
+test_images = test_input_set.reshape(int(len(test_input_set)/n_len),n_len,8,1)
+y_test_images = y_test_set.reshape(int(len(y_test_set)/n_len),n_len,8,1)
 
 
 # #Define the U-Net model
@@ -112,4 +112,7 @@ Unet.compile(optimizer='adam', loss='mse', metrics=['accuracy'])
 "trainning Unet layer 1"
 history= Unet.fit(train_images,y_train_images,epochs=5,batch_size=12, validation_split=0.2)#,callbacks=[earlystopper, checkpointer])
 Unet.save('Unet1_data10')
-
+#predict the complete images in the test dataset.
+y_pred = Unet.predict(test_images)
+y_pred = y_pred.reshape(y_pred.shape[0]*y_pred.shape[1],y_pred.shape[2])
+pd.DataFrame(y_pred).to_csv("Unet_output.csv")
